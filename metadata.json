@@ -1,0 +1,6 @@
+{
+  "name": "HepaCDSS - Hỗ Trợ Quyết Định Sinh Hóa Gan",
+  "description": "Hệ thống hỗ trợ quyết định lâm sàng (CDSS) phân tích sinh hóa gan y khoa chuẩn chỉnh theo ACG, WHO: lưu đồ tiếp cận, tính tỷ số R, De Ritis, FIB-4, APRI, ca mẫu chuyên khoa và xuất báo cáo PDF.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
