@@ -269,5 +269,211 @@ export const BIOMARKER_DICTIONARY: BiomarkerInfo[] = [
     testingPitfalls: [
       'Tiêm bắp hoặc tập thể dục nhẹ cũng có thể làm CK tăng nhẹ.'
     ]
+  },
+  {
+    id: 'afp',
+    code: 'AFP',
+    nameVi: 'Alpha-Fetoprotein',
+    nameEn: 'Alpha-Fetoprotein',
+    category: 'Tumor & Serology',
+    normalRangeMale: '< 10 - 20 ng/mL',
+    normalRangeFemale: '< 10 - 20 ng/mL (Tăng sinh lý khi mang thai)',
+    halfLife: '~5 - 7 ngày',
+    cellularOrigin: 'Được sản xuất bởi túi noãn hoàng và gan bào thai. Ở người trưởng thành, được tiết bởi nguyên bào gan (hepatoblasts) trong quá trình tái tạo gan và bởi tế bào ung thư biểu mô gan.',
+    physiologicalRole: 'Protein huyết tương chính ở bào thai, tương đương chức năng áp lực keo của Albumin ở người lớn.',
+    causesOfElevation: [
+      'Ung thư biểu mô tế bào gan (HCC) - thường > 400 - 500 ng/mL',
+      'U nguyên bào gan (Hepatoblastoma) ở trẻ em',
+      'U quái ác tính hoặc u tế bào mầm tinh hoàn / buồng trứng',
+      'Tái tạo tế bào gan sau đợt bùng phát viêm gan virus cấp/mạn tính (thường tăng vừa 20 - 200 ng/mL)',
+      'Xơ gan hoạt động'
+    ],
+    clinicalPearls: [
+      'Theo đánh giá giải phẫu bệnh học (Altaihani et al. 2024): AFP là dấu ấn khối u then chốt để phát hiện và theo dõi ung thư gan nguyên phát.',
+      'Sự gia tăng AFP trong viêm gan virus mạn không phải lúc nào cũng là ác tính, mà có thể phản ánh quá trình phân chia nguyên bào gan tích cực để bù đắp tế bào bị hoại tử.',
+      'Nồng độ AFP > 400 ng/mL ở bệnh nhân xơ gan có giá trị chẩn đoán xác định HCC rất cao mà không cần chờ sinh thiết nếu hình ảnh học CT/MRI có tính chất ngấm thuốc kinh điển.'
+    ],
+    testingPitfalls: [
+      'Tăng sinh lý rõ rệt trong thai kỳ (do thai nhi tiết vào máu mẹ).'
+    ]
+  },
+  {
+    id: 'ca199',
+    code: 'CA 19-9',
+    nameVi: 'Kháng Nguyên Carbohydrate 19-9',
+    nameEn: 'Carbohydrate Antigen 19-9',
+    category: 'Tumor & Serology',
+    normalRangeMale: '< 37 U/mL',
+    normalRangeFemale: '< 37 U/mL',
+    halfLife: '~4 - 8 ngày',
+    cellularOrigin: 'Biểu mô đường mật, biểu mô ống tụy và tế bào biểu mô đường tiêu hóa.',
+    physiologicalRole: 'Kháng nguyên nhóm máu Lewis sialyl hóa (sialyl-Lewis A), biểu hiện trên bề mặt glycoprotein tiết.',
+    causesOfElevation: [
+      'Ung thư đường mật (Cholangiocarcinoma) - đặc biệt trên bệnh nhân Viêm xơ đường mật tiên phát (PSC)',
+      'Ung thư tụy biểu mô tuyến',
+      'Tắc mật cơ học hoặc viêm đường mật cấp tính lành tính (do giảm bài tiết mật vào ruột)',
+      'Ung thư đại trực tràng, dạ dày, phổi',
+      'Xơ gan'
+    ],
+    clinicalPearls: [
+      'Bài báo Altaihani et al. (2024) nhấn mạnh: CA 19-9 đóng vai trò đặc biệt quan trọng trong việc theo dõi diễn tiến của Viêm xơ đường mật tiên phát (PSC), một bệnh tự miễn thường tiến triển âm thầm thành u đường mật ác tính.',
+      'Khoảng 5 - 10% dân số âm tính với kháng nguyên Lewis (Le a-b-) sẽ không có khả năng tổng hợp CA 19-9, dẫn đến kết quả âm tính giả ngay cả khi khối u đường mật rất lớn.'
+    ],
+    testingPitfalls: [
+      'Ứ mật lành tính có thể gây tăng vừa CA 19-9 (lên đến 100 - 300 U/mL), sẽ hạ về bình thường sau khi giải phóng tắc nghẽn.'
+    ]
+  },
+  {
+    id: 'ferritin',
+    code: 'Ferritin & Bão Hòa Transferrin',
+    nameVi: 'Ferritin & Độ Bão Hòa Transferrin (TSAT)',
+    nameEn: 'Serum Ferritin & Transferrin Saturation',
+    category: 'Specialized',
+    normalRangeMale: 'Ferritin: 30 - 400 ng/mL | TSAT: 20 - 45%',
+    normalRangeFemale: 'Ferritin: 15 - 200 ng/mL | TSAT: 15 - 45%',
+    halfLife: '~30 - 50 giờ',
+    cellularOrigin: 'Tế bào hệ võng nội mô, tế bào nhu mô gan và đại thực bào.',
+    physiologicalRole: 'Dự trữ sắt an toàn bên trong tế bào dưới dạng không độc hại, giải phóng sắt khi cơ thể cần tạo hồng cầu.',
+    causesOfElevation: [
+      'Bệnh ứ sắt mô di truyền (Hereditary Hemochromatosis) - TSAT ≥ 45% và Ferritin tăng cao',
+      'Hoại tử tế bào gan cấp tính (phóng thích ferritin từ tế bào gan bị vỡ)',
+      'Phản ứng viêm pha cấp (Nhiễm trùng, u ác tính, hội chứng hoạt hóa đại thực bào HLH)',
+      'Hội chứng chuyển hóa, gan nhiễm mỡ MASLD, nghiện rượu mạn',
+      'Truyền máu nhiều lần'
+    ],
+    clinicalPearls: [
+      'Theo Hướng dẫn ACG 2017 & Altaihani 2024: Mọi bệnh nhân tăng men gan không rõ nguyên nhân cần làm bilan sắt (Ferritin + TSAT).',
+      'Nếu TSAT ≥ 45% kèm Ferritin tăng: Chỉ định xét nghiệm đột biến gen HFE (C282Y và H63D) để xác chẩn Hemochromatosis.',
+      'Ferritin là protein phản ứng viêm pha cấp; vì vậy trong viêm gan cấp, Ferritin tăng cao thường chỉ là hiện tượng thoát rò do vỡ tế bào chứ không phải ứ sắt mô.'
+    ],
+    testingPitfalls: [
+      'Viêm toàn thân làm tăng Ferritin giả mà độ bão hòa Transferrin vẫn bình thường.'
+    ]
+  },
+  {
+    id: 'ceruloplasmin',
+    code: 'Ceruloplasmin',
+    nameVi: 'Ceruloplasmin Huyết Thanh',
+    nameEn: 'Serum Ceruloplasmin',
+    category: 'Specialized',
+    normalRangeMale: '20 - 40 mg/dL',
+    normalRangeFemale: '20 - 40 mg/dL',
+    halfLife: '~5.5 ngày',
+    cellularOrigin: 'Được tổng hợp chủ yếu ở tế bào nhu mô gan.',
+    physiologicalRole: 'Protein vận chuyển 90-95% đồng trong huyết tương và đóng vai trò men ferroxidase oxy hóa Fe2+ thành Fe3+ để gắn vào transferrin.',
+    causesOfElevation: [
+      'Phản ứng viêm pha cấp, nhiễm trùng',
+      'Thuốc tránh thai chứa estrogen, mang thai'
+    ],
+    causesOfReduction: [
+      'Bệnh Wilson (giảm ở 85% bệnh nhân do đột biến gen ATP7B)',
+      'Hội chứng thận hư, bệnh ruột mất đạm',
+      'Thiếu hụt đồng dinh dưỡng, suy gan tối cấp giai đoạn kiệt quệ'
+    ],
+    clinicalPearls: [
+      'Ở bệnh nhân < 55 tuổi có men gan tăng kéo dài hoặc có bất thường vận động / tâm thần: Cần làm Ceruloplasmin để tầm soát bệnh Wilson.',
+      'Khi Ceruloplasmin < 20 mg/dL, cần làm tiếp xét nghiệm đồng nước tiểu 24h (>100 µg/ngày) và khám mắt bằng đèn khe tìm vòng Kayser-Fleischer ở màng Descemet.'
+    ],
+    testingPitfalls: [
+      'Vì là protein pha cấp, Ceruloplasmin có thể tăng giả về mức bình thường trong đợt viêm gan cấp hoặc nhiễm trùng dù bệnh nhân thực sự mắc bệnh Wilson.'
+    ]
+  },
+  {
+    id: 'autoimmune-antibodies',
+    code: 'Tự Kháng Thể Gan',
+    nameVi: 'Bộ Tự Kháng Thể Gan (AMA, ANA, ASMA, LKM1)',
+    nameEn: 'Autoimmune Liver Antibodies Panel',
+    category: 'Tumor & Serology',
+    normalRangeMale: 'Âm tính (Hiệu giá < 1:40)',
+    normalRangeFemale: 'Âm tính (Hiệu giá < 1:40)',
+    halfLife: 'Kháng thể IgG lưu hành nhiều tuần.',
+    cellularOrigin: 'Tương bào của hệ thống miễn dịch tự sinh.',
+    physiologicalRole: 'Chỉ điểm quá trình tự miễn phá hủy tế bào gan hoặc đường mật.',
+    causesOfElevation: [
+      'AMA (Kháng thể kháng ty thể): Dấu hiệu đặc trưng nhất của Viêm đường mật tiên phát (PBC, dương tính >95%)',
+      'ANA (Kháng thể kháng nhân) & ASMA (Kháng thể kháng cơ trơn): Viêm gan tự miễn Type 1 (AIH-1)',
+      'Anti-LKM1 & Anti-LC1: Viêm gan tự miễn Type 2 (AIH-2)',
+      'p-ANCA: Viêm xơ đường mật tiên phát (PSC)'
+    ],
+    clinicalPearls: [
+      'Theo Altaihani et al. (2024): Việc định danh chính xác kiểu tự kháng thể giúp phân biệt các bệnh gan tự miễn và hội chứng chồng lấp (Overlap syndrome).',
+      'Ở phụ nữ trẻ có tăng men gan không giải thích được: Kháng thể ANA, ASMA và định lượng IgG là bước chỉ định bắt buộc.'
+    ],
+    testingPitfalls: [
+      'Hiệu giá ANA thấp (1:40 hoặc 1:80) có thể gặp ở người bình thường hoặc người già mà không có bệnh tự miễn thực sự.'
+    ]
+  },
+  {
+    id: 'ldh',
+    code: 'LDH',
+    nameVi: 'Lactate Dehydrogenase',
+    nameEn: 'Lactate Dehydrogenase',
+    category: 'Non-hepatic',
+    normalRangeMale: '50 - 150 U/L (hoặc 140 - 280 U/L tùy phương pháp)',
+    normalRangeFemale: '50 - 150 U/L (hoặc 140 - 280 U/L tùy phương pháp)',
+    halfLife: '~10 - 24 giờ tùy isoenzyme (LDH-5 ở gan ~10h, LDH-1 ở tim ~100h)',
+    cellularOrigin: 'Hiện diện trong hầu hết các mô cơ thể: Gan, cơ tim, cơ vân, thận, hồng cầu, khối u.',
+    physiologicalRole: 'Xúc tác phản ứng thuận nghịch chuyển hóa pyruvat thành lactat trong chu trình đường phân kỵ khí (Cori cycle).',
+    causesOfElevation: [
+      'Thiếu máu cục bộ gan / Sốc gan (LDH tăng cực cao và giảm nhanh trong vài ngày)',
+      'Tán huyết nội mạch hoặc vỡ hồng cầu mẫu thử trong ống nghiệm',
+      'Nhồi máu cơ tim, nhồi máu phổi, tiêu cơ vân',
+      'Ung thư di căn gan hoặc u lympho'
+    ],
+    clinicalPearls: [
+      'Tỷ số ALT/LDH < 1.5 trong bệnh cảnh tăng men gan dữ dội gợi ý rất cao Viêm gan thiếu máu cục bộ (Shock Liver) hoặc ngộ độc Paracetamol, khác với Viêm gan virus cấp thường có ALT/LDH > 1.5.',
+      'LDH tăng cao kèm Bilirubin gián tiếp tăng là bộ đôi then chốt xác định tan máu.'
+    ],
+    testingPitfalls: [
+      'Mẫu máu vỡ hồng cầu nhẹ cũng làm LDH tăng vọt giả tạo.'
+    ]
+  },
+  {
+    id: 'cdt',
+    code: 'CDT',
+    nameVi: 'Carbohydrate-Deficient Transferrin',
+    nameEn: 'Carbohydrate-Deficient Transferrin',
+    category: 'Specialized',
+    normalRangeMale: '< 1.7 - 2.0 %',
+    normalRangeFemale: '< 1.7 - 2.0 %',
+    halfLife: '~14 - 17 ngày',
+    cellularOrigin: 'Được tạo ra tại gan khi ethanol ức chế các enzym gắn chuỗi carbohydrate vào transferrin.',
+    physiologicalRole: 'Dấu ấn đặc hiệu phản ánh tình trạng lạm dụng rượu mạn tính (>50-60g cồn nguyên chất mỗi ngày trong ít nhất 2 tuần liên tục).',
+    causesOfElevation: [
+      'Nghiện rượu / Lạm dụng rượu mạn tính nặng',
+      'Rối loạn glycosyl hóa bẩm sinh (rất hiếm)'
+    ],
+    clinicalPearls: [
+      'Bài báo 2024 ghi nhận: Carbohydrate-deficient transferrin có độ đặc hiệu rất cao trong việc phát hiện uống rượu quá mức gây hại gan, vượt trội hơn so với GGT đơn độc (vốn dễ bị nhiễu bởi thuốc hoặc gan nhiễm mỡ).',
+      'Nồng độ CDT sẽ giảm dần về bình thường sau 2 - 4 tuần cai rượu hoàn toàn, hữu ích trong giám sát cai nghiện.'
+    ],
+    testingPitfalls: [
+      'Xơ gan giai đoạn cuối thể mất bù nặng có thể làm biến đổi kết quả CDT.'
+    ]
+  },
+  {
+    id: 'tsh',
+    code: 'TSH & Tuyến Giáp',
+    nameVi: 'Thyroid-Stimulating Hormone & Tuyến Giáp',
+    nameEn: 'Thyroid-Stimulating Hormone (TSH)',
+    category: 'Specialized',
+    normalRangeMale: '0.4 - 4.0 µIU/mL',
+    normalRangeFemale: '0.4 - 4.0 µIU/mL',
+    halfLife: '~60 phút',
+    cellularOrigin: 'Tuyến yên thùy trước.',
+    physiologicalRole: 'Điều hòa sinh tổng hợp và bài tiết hormone giáp (T3, T4).',
+    causesOfElevation: [
+      'Suy giáp tiên phát (Hypothyroidism)'
+    ],
+    causesOfReduction: [
+      'Cường giáp / Nhiễm độc giáp (Hyperthyroidism / Thyrotoxicosis)'
+    ],
+    clinicalPearls: [
+      'Cả suy giáp và cường giáp đều có thể gây biến đổi men gan (Altaihani et al. 2024 & ACG 2017).',
+      'Suy giáp thường gây tăng ALT/AST nhẹ kèm tăng lipid máu và men cơ CK; cường giáp có thể gây hoại tử tế bào gan do thiếu oxy tương đối ở Zone 3 hoặc gây ứ mật vàng da trong bão giáp.'
+    ],
+    testingPitfalls: [
+      'Kháng thể dị loại (Heterophile antibodies) có thể gây sai lệch kết quả miễn dịch.'
+    ]
   }
 ];

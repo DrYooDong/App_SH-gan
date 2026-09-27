@@ -27,14 +27,16 @@ export const CaseLibraryView: React.FC<CaseLibraryViewProps> = ({ onSelectCaseTo
   const [activeCaseModal, setActiveCaseModal] = useState<ClinicalCase | null>(null);
 
   const categories = [
-    { id: 'all', label: 'Tất cả (12 Ca)' },
+    { id: 'all', label: `Tất cả (${CLINICAL_CASES.length} Ca)` },
+    { id: 'DILI', label: 'Tổn Thương Do Thuốc (DILI - NEJM)' },
     { id: 'Viral', label: 'Viêm gan virus' },
     { id: 'Alcohol', label: 'Do rượu (ALD)' },
     { id: 'Metabolic', label: 'Chuyển hóa (MASLD)' },
-    { id: 'Biliary', label: 'Đường mật (Sỏi/Ứ mật)' },
-    { id: 'Toxic/DILI', label: 'Độc chất & Thuốc' },
+    { id: 'Biliary', label: 'Đường mật (Sỏi/PSC/Ứ mật)' },
+    { id: 'Toxic/DILI', label: 'Độc chất hóa học' },
     { id: 'Autoimmune', label: 'Tự miễn (AIH/PBC)' },
-    { id: 'Genetic', label: 'Di truyền (Wilson/Gilbert)' },
+    { id: 'Genetic', label: 'Di truyền (Wilson/HFE/Gilbert)' },
+    { id: 'Pre-analytical', label: 'Bẫy Tiền Phân Tích & QC' },
     { id: 'Emergency', label: 'Cấp cứu & Sốc gan' }
   ];
 

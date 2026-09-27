@@ -102,6 +102,46 @@ const BIOMARKER_CROSS_LINKS: Record<string, {
       { id: 'de-ritis-ratio', label: 'Chuyên Đề Tỷ Số De Ritis (AST/ALT)', desc: 'Tỷ lệ AST trong mô cơ bắp là 17:1 so với ALT' },
       { id: 'pitfalls-interfering', label: 'Bẫy Xét Nghiệm & Yếu Tố Gây Nhiễu', desc: 'Phân biệt tiêu cơ vân với tổn thương gan thực thụ' }
     ]
+  },
+  'afp': {
+    flowcharts: [
+      { id: 'algo-transaminases', label: 'Lưu Đồ Tầm Soát Viêm Gan Virus', desc: 'Đánh giá nguy cơ ung thư tế bào gan HCC' }
+    ],
+    topics: [
+      { id: 'secondary-tumor-serology', label: 'Dấu Ấn Khối U & Huyết Thanh Miễn Dịch', desc: 'AFP > 400 ng/mL trong ung thư gan HCC' }
+    ]
+  },
+  'ca199': {
+    flowcharts: [
+      { id: 'algo-cholestasis', label: 'Lưu Đồ Hội Chứng Ứ Mật', desc: 'Theo dõi tiến triển PSC và ung thư đường mật' }
+    ],
+    topics: [
+      { id: 'secondary-tumor-serology', label: 'Dấu Ấn Khối U & Huyết Thanh Miễn Dịch', desc: 'CA 19-9 giám sát ung thư đường mật ở bệnh nhân PSC' }
+    ]
+  },
+  'ferritin': {
+    flowcharts: [
+      { id: 'algo-transaminases', label: 'Lưu Đồ Tăng Men Gan Mạn Tính', desc: 'Bilan sắt tầm soát Hemochromatosis' }
+    ],
+    topics: [
+      { id: 'secondary-tumor-serology', label: 'Bilan Sắt & Bệnh Ứ Sắt Mô HFE', desc: 'Độ bão hòa Transferrin ≥ 45% chỉ định đột biến gen' }
+    ]
+  },
+  'ceruloplasmin': {
+    flowcharts: [
+      { id: 'algo-transaminases', label: 'Lưu Đồ Tăng Men Gan Người Trẻ', desc: 'Tầm soát Bệnh Wilson ở bệnh nhân <55 tuổi' }
+    ],
+    topics: [
+      { id: 'secondary-tumor-serology', label: 'Bệnh Wilson & Chuyển Hóa Đồng', desc: 'Ceruloplasmin < 20 mg/dL và vòng Kayser-Fleischer' }
+    ]
+  },
+  'autoimmune-antibodies': {
+    flowcharts: [
+      { id: 'algo-transaminases', label: 'Lưu Đồ Tự Miễn Gan Mật', desc: 'Kháng thể ANA, ASMA, AMA trong AIH và PBC' }
+    ],
+    topics: [
+      { id: 'secondary-tumor-serology', label: 'Tự Kháng Thể Bệnh Gan Tự Miễn', desc: 'Kháng thể kháng ty thể AMA đặc hiệu >95% ở PBC' }
+    ]
   }
 };
 
@@ -148,8 +188,9 @@ export const BiomarkersView: React.FC<BiomarkersViewProps> = ({
     { id: 'Cholestatic', label: 'Ứ mật (ALP, GGT)' },
     { id: 'Bilirubin', label: 'Bilirubin' },
     { id: 'Synthetic', label: 'Tổng hợp (Albumin, INR)' },
-    { id: 'Specialized', label: 'Tiểu cầu & Xơ gan' },
-    { id: 'Non-hepatic', label: 'Ngoài gan (CK)' }
+    { id: 'Tumor & Serology', label: 'Khối u & Tự miễn (AFP, CA19-9, AMA...)' },
+    { id: 'Specialized', label: 'Chuyển hóa & Xơ gan (Ferritin, TSAT)' },
+    { id: 'Non-hepatic', label: 'Ngoài gan (CK, LDH, TSH)' }
   ];
 
   const filteredMarkers = BIOMARKER_DICTIONARY.filter(m => {

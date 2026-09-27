@@ -110,7 +110,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                 HepaCDSS - Clinical Decision Support System for Liver Chemistries
               </p>
               <p className="text-[11px] text-slate-500">
-                Chuẩn hóa theo khuyến cáo ACG 2017 & WHO Training Workshop Session 4
+                Chuẩn hóa theo NEJM 2019 (DILI Phenotypes), ACG Clinical Guideline 2017, Altaihani et al. 2024 &amp; Sikaris 2013
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Ngày thực hiện</span>
               <span className="text-xs font-mono font-bold text-slate-800 block">{currentDate}</span>
               <span className="inline-block px-2 py-0.5 text-[9px] font-bold bg-teal-50 text-teal-800 border border-teal-200 rounded">
-                Bản Tóm Tắt Chuyên Khoa
+                Bản Tóm Tắt Chuyên Khoa Toàn Diện
               </span>
             </div>
           </div>
@@ -130,15 +130,15 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               <span className="font-bold text-slate-900">{labs.gender === 'male' ? 'Nam' : 'Nữ'}</span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px] font-bold uppercase">Tuổi & Thể trạng</span>
+              <span className="text-slate-500 block text-[10px] font-bold uppercase">Tuổi &amp; Thể trạng</span>
               <span className="font-bold text-slate-900">
                 {labs.age ? `${labs.age} tuổi` : 'Chưa rõ'} | BMI: {labs.bmi || 'Chưa ghi nhận'}
               </span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px] font-bold uppercase">Rượu / Cồn</span>
-              <span className="font-bold text-slate-900">
-                {labs.alcoholIntake ? `${labs.alcoholIntake} g/tuần` : 'Không lạm dụng'}
+              <span className="text-slate-500 block text-[10px] font-bold uppercase">Thuốc / Thảo dược</span>
+              <span className="font-bold text-rose-800 truncate block">
+                {labs.suspectedDrug || 'Không ghi nhận'}
               </span>
             </div>
             <div>
@@ -149,7 +149,45 @@ export const ReportModal: React.FC<ReportModalProps> = ({
             </div>
           </div>
 
-          {/* Red Flag Box if warning */}
+          {/* NEJM 2019 Hy's Law Critical Alert Banner */}
+          {analysis.diliAnalysis?.hysLaw.isPositive && (
+            <div className="p-3.5 bg-rose-50 border-2 border-rose-600 rounded-xl text-xs text-rose-950 space-y-1.5 shadow-xs">
+              <div className="flex items-center justify-between font-black text-rose-900">
+                <span className="flex items-center space-x-1.5">
+                  <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+                  <span>BÁO ĐỘNG ĐỎ: BỆNH NHÂN THỎA TIÊU CHUẨN ĐỊNH LUẬT HY (HY'S LAW - NEJM 2019)</span>
+                </span>
+                <span className="px-2 py-0.5 bg-rose-600 text-white rounded text-[10px] uppercase font-bold">
+                  Tử vong / Ghép gan ≥ 10%
+                </span>
+              </div>
+              <p className="font-semibold leading-relaxed">
+                {analysis.diliAnalysis.hysLaw.message}
+              </p>
+              <div className="text-[11px] text-rose-900 bg-white/80 p-2 rounded-lg border border-rose-200">
+                • Tiêu chuẩn: ALT {labs.alt} U/L (≥ 3x ULN) + Bilirubin {labs.totalBilirubin} mg/dL (≥ 2x ULN) + Không tắc mật (R = {analysis.rRatio} &gt; 5).
+                <br />• Xử trí: <strong>ĐÌNH CHỈ NGAY THUỐC NGHI NGỜ</strong>. Hội chẩn khẩn cấp chuyên khoa Gan mật!
+              </div>
+            </div>
+          )}
+
+          {/* Pre-analytical Alerts Banner */}
+          {analysis.preAnalyticalAlerts && analysis.preAnalyticalAlerts.length > 0 && (
+
+            <div className="p-3 bg-amber-50 border-2 border-amber-400 rounded-xl text-xs text-amber-950 space-y-1.5">
+              <div className="flex items-center space-x-1.5 font-bold text-amber-900">
+                <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                <span className="uppercase tracking-wider">Cảnh báo Tiền Phân Tích &amp; Khả Năng Nhiễu Mẫu (Altaihani et al. 2024):</span>
+              </div>
+              <ul className="list-disc pl-5 space-y-1">
+                {analysis.preAnalyticalAlerts.map((alert, idx) => (
+                  <li key={idx} className="font-medium text-amber-900 leading-relaxed">{alert}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Red Flag Box if acute liver failure */}
           {analysis.isAcuteLiverFailureWarning && (
             <div className="p-3 bg-rose-50 border border-rose-400 rounded-xl text-xs text-rose-900 space-y-1">
               <div className="flex items-center space-x-1.5 font-bold text-rose-800">
@@ -165,7 +203,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
           {/* Table of Biomarkers */}
           <div className="space-y-2">
             <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-              1. Bảng Kết Quả Định Lượng Sinh Hóa Gan
+              1. Bảng Kết Quả Định Lượng Sinh Hóa Gan &amp; Dấu Ấn Chuyên Khoa
             </h3>
 
             <div className="overflow-x-auto border border-slate-200 rounded-xl">
@@ -175,7 +213,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                     <th className="py-2 px-3">Tên Xét Nghiệm</th>
                     <th className="py-2 px-3">Kết Quả</th>
                     <th className="py-2 px-3">Khoảng Tham Chiếu / ULN</th>
-                    <th className="py-2 px-3">Đánh Giá & Bội Số</th>
+                    <th className="py-2 px-3">Đánh Giá &amp; Bội Số</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">
@@ -216,10 +254,10 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                     <td className="py-2 px-3">{analysis.conjugatedPercent}% tổng bilirubin</td>
                   </tr>
                   <tr>
-                    <td className="py-2 px-3 font-semibold text-slate-900">Albumin Máu (Chức năng tổng hợp)</td>
+                    <td className="py-2 px-3 font-semibold text-slate-900">Albumin Máu (Tổng hợp gan)</td>
                     <td className="py-2 px-3">{labs.albumin ? `${labs.albumin} g/dL` : 'Chưa làm'}</td>
-                    <td className="py-2 px-3 text-slate-500">3.5 - 5.0 g/dL</td>
-                    <td className="py-2 px-3">{labs.albumin ? (labs.albumin < 3.5 ? 'Giảm (bệnh mạn)' : 'Bình thường') : '-'}</td>
+                    <td className="py-2 px-3 text-slate-500">3.5 - 5.0 g/dL (t½ = 21 ngày)</td>
+                    <td className="py-2 px-3">{labs.albumin ? (labs.albumin < 3.5 ? 'Giảm (bệnh mạn/suy gan)' : 'Bình thường') : '-'}</td>
                   </tr>
                   <tr className="bg-slate-50/50">
                     <td className="py-2 px-3 font-semibold text-slate-900">PT / INR (Đông máu ngoại sinh)</td>
@@ -235,15 +273,72 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                       <td className="py-2 px-3">{labs.platelets < 150 ? 'Giảm (nghi ngờ tăng áp cửa)' : 'Bình thường'}</td>
                     </tr>
                   )}
+                  {/* Additional Biomarkers Rows */}
+                  {labs.afp !== undefined && (
+                    <tr className="bg-purple-50/40">
+                      <td className="py-2 px-3 font-semibold text-purple-900">Alpha-fetoprotein (AFP)</td>
+                      <td className="py-2 px-3 font-bold text-purple-800">{labs.afp} ng/mL</td>
+                      <td className="py-2 px-3 text-slate-500">&lt; 10 ng/mL (Ngưỡng HCC: &gt; 400)</td>
+                      <td className="py-2 px-3">{labs.afp > 400 ? 'Tăng rất cao (Nghi HCC)' : labs.afp > 10 ? 'Tăng nhẹ/tái tạo mô' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.ca199 !== undefined && (
+                    <tr className="bg-purple-50/40">
+                      <td className="py-2 px-3 font-semibold text-purple-900">CA 19-9 (Khối u đường mật)</td>
+                      <td className="py-2 px-3 font-bold text-purple-800">{labs.ca199} U/mL</td>
+                      <td className="py-2 px-3 text-slate-500">&lt; 37 U/mL (Ngưỡng cảnh báo: &gt; 100)</td>
+                      <td className="py-2 px-3">{labs.ca199 > 100 ? 'Nghi ung thư biểu mô đường mật' : labs.ca199 > 37 ? 'Tăng nhẹ' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.ferritin !== undefined && (
+                    <tr>
+                      <td className="py-2 px-3 font-semibold text-slate-900">Ferritin Huyết Thanh</td>
+                      <td className="py-2 px-3 font-bold">{labs.ferritin} ng/mL</td>
+                      <td className="py-2 px-3 text-slate-500">30 - 300 ng/mL</td>
+                      <td className="py-2 px-3">{labs.ferritin > 1000 ? 'Rất cao (Nguy cơ xơ hóa/ứ sắt)' : labs.ferritin > 300 ? 'Tăng' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.transferrinSat !== undefined && (
+                    <tr className="bg-slate-50/50">
+                      <td className="py-2 px-3 font-semibold text-slate-900">Bão Hòa Transferrin (TSAT)</td>
+                      <td className="py-2 px-3 font-bold">{labs.transferrinSat}%</td>
+                      <td className="py-2 px-3 text-slate-500">20 - 45% (Chỉ định gen HFE nếu ≥ 45%)</td>
+                      <td className="py-2 px-3">{labs.transferrinSat >= 45 ? 'Chỉ định xét nghiệm gen HFE' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.ceruloplasmin !== undefined && (
+                    <tr>
+                      <td className="py-2 px-3 font-semibold text-slate-900">Ceruloplasmin (Wilson)</td>
+                      <td className="py-2 px-3 font-bold">{labs.ceruloplasmin} mg/dL</td>
+                      <td className="py-2 px-3 text-slate-500">20 - 40 mg/dL</td>
+                      <td className="py-2 px-3">{labs.ceruloplasmin < 20 ? 'Giảm rõ (Nghi bệnh Wilson)' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.ck !== undefined && (
+                    <tr className="bg-slate-50/50">
+                      <td className="py-2 px-3 font-semibold text-slate-900">Creatine Kinase (CK)</td>
+                      <td className="py-2 px-3 font-bold">{labs.ck} U/L</td>
+                      <td className="py-2 px-3 text-slate-500">30 - 200 U/L</td>
+                      <td className="py-2 px-3">{labs.ck > 1000 ? 'Tăng vọt (Hủy cơ vân / tổn thương cơ)' : labs.ck > 200 ? 'Tăng nhẹ' : 'Bình thường'}</td>
+                    </tr>
+                  )}
+                  {labs.ldh !== undefined && (
+                    <tr>
+                      <td className="py-2 px-3 font-semibold text-slate-900">Lactate Dehydrogenase (LDH)</td>
+                      <td className="py-2 px-3 font-bold">{labs.ldh} U/L</td>
+                      <td className="py-2 px-3 text-slate-500">50 - 150 U/L (Altaihani 2024)</td>
+                      <td className="py-2 px-3">{labs.ldh > 150 ? 'Tăng' : 'Bình thường'}</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
           </div>
 
-          {/* Section 2: CDSS Core Calculations */}
-          <div className="space-y-2">
+          {/* Section 2: CDSS Core Calculations & Sikaris 2013 De Ritis Matrix */}
+          <div className="space-y-3">
             <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-              2. Đánh Giá Các Chỉ Số Tính Toán & Phân Tầng
+              2. Đánh Giá Các Chỉ Số Tính Toán &amp; Phân Tầng De Ritis (Sikaris 2013)
             </h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
@@ -255,7 +350,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
                 <span className="text-[10px] text-slate-500 block font-bold">Tỷ số De Ritis (AST/ALT)</span>
                 <span className="text-sm font-extrabold text-slate-900 mt-0.5 block">{analysis.deRitisRatio}</span>
-                <span className="text-[10px] text-slate-500">{analysis.deRitisRatio >= 2 ? 'Rượu / Xơ gan' : analysis.deRitisRatio < 1 ? 'Virus / MASLD' : 'Bình thường'}</span>
+                <span className="text-[10px] text-slate-500">{analysis.deRitisDetail?.decisionLimit || (analysis.deRitisRatio >= 2 ? 'Rượu / Xơ gan' : 'Virus / MASLD')}</span>
               </div>
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
                 <span className="text-[10px] text-slate-500 block font-bold">Mức Độ Tăng Men</span>
@@ -272,7 +367,77 @@ export const ReportModal: React.FC<ReportModalProps> = ({
                 <span className="text-[10px] text-slate-500">{analysis.fib4Stage || 'Liên hợp'}</span>
               </div>
             </div>
+
+            {/* In-depth De Ritis & Kinetic Box */}
+            {analysis.deRitisDetail && (
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1.5">
+                <div className="flex items-center justify-between font-bold text-slate-900">
+                  <span>Ma Trận Quyết Định Lâm Sàng De Ritis (Bảng 2 Sikaris 2013):</span>
+                  <span className="text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200 font-mono">
+                    Khung phân loại: {analysis.deRitisDetail.decisionLimit}
+                  </span>
+                </div>
+                <p className="text-slate-700 leading-relaxed font-medium">
+                  {analysis.deRitisDetail.interpretation}
+                </p>
+                <div className="bg-white p-2.5 rounded-lg border border-slate-200 text-[11px] text-slate-600 space-y-1">
+                  <div><strong>Động học bán hủy &amp; cơ chế: </strong>{analysis.deRitisDetail.halfLifeKineticNote}</div>
+                  <div><strong>Ý nghĩa tiên lượng: </strong>{analysis.deRitisDetail.prognosticSignificance}</div>
+                  {analysis.deRitisDetail.kineticAlert && (
+                    <div className="p-2 bg-rose-50 border border-rose-300 rounded font-bold text-rose-800 mt-1">
+                      ⚠️ {analysis.deRitisDetail.kineticAlert}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* Section: Secondary & Autoimmune Biomarker Alerts */}
+          {((analysis.secondaryBiomarkerAlerts && analysis.secondaryBiomarkerAlerts.length > 0) || 
+            (analysis.autoimmuneAlerts && analysis.autoimmuneAlerts.length > 0)) && (
+            <div className="space-y-2">
+              <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
+                Dấu Ấn Khối U &amp; Huyết Thanh Miễn Dịch Chuyên Khoa
+              </h3>
+              <div className="p-3 bg-purple-50/60 border border-purple-200 rounded-xl text-xs space-y-1.5">
+                {analysis.secondaryBiomarkerAlerts?.map((a, i) => (
+                  <p key={i} className="text-purple-950 font-medium">🔬 {a}</p>
+                ))}
+                {analysis.autoimmuneAlerts?.map((a, i) => (
+                  <p key={i} className="text-purple-950 font-medium">🛡️ {a}</p>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Section: NEJM 2019 DILI Phenotype Evaluation */}
+          {analysis.diliAnalysis?.isSuspected && (
+            <div className="space-y-2">
+              <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
+                Đánh Giá Độc Tính Gan Do Thuốc / Thảo Dược (DILI - NEJM 2019)
+              </h3>
+              <div className="p-3.5 bg-rose-50/60 border border-rose-200 rounded-xl text-xs space-y-2">
+                <div className="flex items-center justify-between font-bold">
+                  <span className="text-rose-950">
+                    Kiểu hình: <strong>{analysis.diliAnalysis.phenotypeVi}</strong> ({analysis.diliAnalysis.phenotype})
+                  </span>
+                  <span className="px-2 py-0.5 bg-rose-100 text-rose-800 rounded text-[10px] uppercase font-bold border border-rose-200">
+                    Cơ chế: {analysis.diliAnalysis.mechanism}
+                  </span>
+                </div>
+                <div className="text-slate-700 space-y-1">
+                  {analysis.diliAnalysis.implicatedAgent && (
+                    <div>• Tác nhân nghi ngờ: <strong>{analysis.diliAnalysis.implicatedAgent}</strong></div>
+                  )}
+                  {analysis.diliAnalysis.latencyDays !== undefined && (
+                    <div>• Thời gian ủ bệnh: <strong>{analysis.diliAnalysis.latencyDays} ngày</strong> {analysis.diliAnalysis.latencyAssessment && `(${analysis.diliAnalysis.latencyAssessment})`}</div>
+                  )}
+                  <div>• Khuyến cáo hành động: {analysis.diliAnalysis.recommendedActions.join(' ')}</div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Section 3: Differential Diagnoses */}
           <div className="space-y-2">
@@ -301,7 +466,7 @@ export const ReportModal: React.FC<ReportModalProps> = ({
           {/* Section 4: Recommended Action Plan */}
           <div className="space-y-2">
             <h3 className="font-bold text-slate-900 text-xs uppercase tracking-wider">
-              4. Kế Hoạch Xét Nghiệm Bổ Sung & Xử Trí Theo Hướng Dẫn ACG
+              4. Kế Hoạch Xét Nghiệm Bổ Sung &amp; Xử Trí Theo Hướng Dẫn ACG
             </h3>
 
             <ul className="space-y-1 text-xs text-slate-700 bg-teal-50/40 p-3 rounded-xl border border-teal-100">
@@ -313,6 +478,18 @@ export const ReportModal: React.FC<ReportModalProps> = ({
               ))}
             </ul>
           </div>
+
+          {/* Section 5: QC & Pre-analytical Guidance for Clinicians */}
+          {analysis.qualityControlGuidance && (
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1 text-slate-600">
+              <span className="font-bold text-slate-800 uppercase text-[10px] tracking-wider block">
+                Khuyến Nghị Tiêu Chuẩn Phòng Xét Nghiệm (Altaihani et al. 2024):
+              </span>
+              <p className="leading-relaxed">
+                {analysis.qualityControlGuidance}
+              </p>
+            </div>
+          )}
 
           {/* Signatures box */}
           <div className="pt-6 border-t border-slate-200 grid grid-cols-2 gap-4 text-center text-xs">
@@ -351,3 +528,4 @@ export const ReportModal: React.FC<ReportModalProps> = ({
     </div>
   );
 };
+
